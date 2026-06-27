@@ -36,6 +36,11 @@ Expected macSandbox runtime paths after building/running from source:
 - virtio cache: `/Users/hoya/Library/Application Support/MacSandbox/drivers/virtio-win.iso`
 - baseline: `/Users/hoya/Library/Application Support/MacSandbox/baseline`
 
+Windows 11 ARM64 media:
+
+- Official Microsoft download page: `https://www.microsoft.com/en-us/software-download/windows11arm64`
+- After downloading, set `WIN11_ARM64_MEDIA=/path/to/windows11-arm64.iso` when running prototype scripts.
+
 At the time this project was created, the macSandbox baseline was not confirmed present. The next implementation pass should verify it or rebuild it from the source checkout.
 
 ## Non-Goals

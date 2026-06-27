@@ -34,6 +34,16 @@ KakaoTalk installer:
 
 `/Users/hoya/Downloads/KakaoTalk-Windows/KakaoTalk_Setup_qwin64.exe`
 
+Windows 11 ARM64 ISO:
+
+Download from:
+
+`https://www.microsoft.com/en-us/software-download/windows11arm64`
+
+Then pass the local path as:
+
+`WIN11_ARM64_MEDIA=/path/to/windows11-arm64.iso`
+
 ## Proposed KakaoTalkWinApp Paths
 
 Project:

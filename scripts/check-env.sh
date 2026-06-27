@@ -52,6 +52,7 @@ if [[ -n "$WIN11_ARM64_MEDIA" ]]; then
   check_path "WIN11_ARM64_MEDIA" "$WIN11_ARM64_MEDIA"
 else
   printf 'miss WIN11_ARM64_MEDIA env not set\n'
+  printf 'hint download: https://www.microsoft.com/en-us/software-download/windows11arm64\n'
   missing=1
 fi
 

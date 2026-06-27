@@ -34,6 +34,16 @@ Still missing:
 - Windows 11 ARM64 ISO/VHDX path.
 - macSandbox baseline directory at `/Users/hoya/Library/Application Support/MacSandbox/baseline`.
 
+Download Windows 11 ARM64 ISO from Microsoft:
+
+`https://www.microsoft.com/en-us/software-download/windows11arm64`
+
+Then export:
+
+```sh
+export WIN11_ARM64_MEDIA="/path/to/windows11-arm64.iso"
+```
+
 Use:
 
 ```sh
