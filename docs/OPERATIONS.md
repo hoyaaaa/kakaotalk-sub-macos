@@ -52,6 +52,13 @@ scripts/find-windows-media.sh
 scripts/check-baseline.sh
 ```
 
+Build baseline after ISO exists:
+
+```sh
+WIN11_ARM64_MEDIA="/path/to/windows11-arm64.iso" scripts/build-baseline.sh
+scripts/check-baseline.sh
+```
+
 ## Current Manual Recovery Notes
 
 The macSandbox virtio download previously hung during `Preparing virtio-win drivers...`.
