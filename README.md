@@ -30,18 +30,30 @@ Current local reality:
 - `/Applications/macSandbox for Windows.app` is not expected to exist; it was removed because it is not used directly.
 - Use the local macSandbox source checkout and upstream repository as the reference implementation.
 - Build or run from source when baseline generation or runtime behavior needs to be exercised.
+- Baseline generation has been verified locally with the official Microsoft Windows 11 ARM64 ISO.
 
 Expected macSandbox runtime paths after building/running from source:
 
 - virtio cache: `/Users/hoya/Library/Application Support/MacSandbox/drivers/virtio-win.iso`
 - baseline: `/Users/hoya/Library/Application Support/MacSandbox/baseline`
+- KakaoTalk persistent overlay: `/Users/hoya/Library/Application Support/KakaoTalkWinApp/kakaotalk.qcow2`
 
 Windows 11 ARM64 media:
 
 - Official Microsoft download page: `https://www.microsoft.com/en-us/software-download/windows11arm64`
-- After downloading, set `WIN11_ARM64_MEDIA=/path/to/windows11-arm64.iso` when running prototype scripts.
+- Local ISO used for baseline: `/Users/hoya/Downloads/Win11_25H2_Korean_Arm64_v2.iso`
+- Microsoft SHA256 verified: `723fdcb737b39a5ec1f4b0eadacf288f1a2c4c4c8c845eb1f6a433cc264bd426`
 
-At the time this project was created, the macSandbox baseline was not confirmed present. The next implementation pass should verify it or rebuild it from the source checkout.
+Current prototype flow:
+
+```bash
+scripts/check-baseline.sh
+scripts/create-kakaotalk-overlay.sh
+scripts/run-kakaotalk-vm.sh
+scripts/connect-rdp.sh
+```
+
+`run-kakaotalk-vm.sh` stays in the foreground while the VM is running. Run `connect-rdp.sh` from another terminal after Windows has booted. The RDP session exposes the installer folder as `\\tsclient\KakaoInstaller`.
 
 ## Non-Goals
 
