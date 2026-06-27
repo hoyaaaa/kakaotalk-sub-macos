@@ -20,6 +20,28 @@ The PR page is:
 
 Do not assume `/Applications/macSandbox for Windows.app` exists. It was removed because this project should use macSandbox as source/reference code, not as the product runtime.
 
+## Current Local Readiness
+
+Verified on 2026-06-27:
+
+- Homebrew is installed.
+- `qemu-system-aarch64`, `qemu-img`, `sdl-freerdp`, and `wimlib-imagex` are installed.
+- KakaoTalk installer exists at `/Users/hoya/Downloads/KakaoTalk-Windows/KakaoTalk_Setup_qwin64.exe`.
+- `/Users/hoya/macSandbox` builds successfully with `swift build`.
+
+Still missing:
+
+- Windows 11 ARM64 ISO/VHDX path.
+- macSandbox baseline directory at `/Users/hoya/Library/Application Support/MacSandbox/baseline`.
+
+Use:
+
+```sh
+scripts/check-env.sh
+scripts/find-windows-media.sh
+scripts/check-baseline.sh
+```
+
 ## Current Manual Recovery Notes
 
 The macSandbox virtio download previously hung during `Preparing virtio-win drivers...`.
