@@ -76,3 +76,9 @@ scripts/uninstall.sh
 ```bash
 scripts/uninstall.sh --yes
 ```
+
+## 라이선스
+
+이 프로젝트의 코드는 MIT License로 배포됩니다. 자세한 내용은 [LICENSE](LICENSE)를 확인하세요.
+
+카카오톡, KakaoTalk 및 관련 상표와 앱은 Kakao Corp.의 소유입니다. 이 프로젝트는 Kakao Corp.와 관련이 없는 비공식 도구입니다.
