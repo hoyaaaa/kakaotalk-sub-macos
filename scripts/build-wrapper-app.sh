@@ -42,6 +42,7 @@ INFO="$WRAPPER_APP/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Add :CFBundlePackageType string APPL" "$INFO" >/dev/null
 /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string 1.0" "$INFO" >/dev/null
 /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string 1" "$INFO" >/dev/null
+/usr/libexec/PlistBuddy -c "Add :KakaoTalkSubProjectDir string $PROJECT_DIR" "$INFO" >/dev/null
 if [[ -n "$ICON_FILE" ]]; then
   /usr/libexec/PlistBuddy -c "Add :CFBundleIconFile string $ICON_FILE" "$INFO" >/dev/null
 fi

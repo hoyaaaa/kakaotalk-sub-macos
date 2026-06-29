@@ -11,12 +11,14 @@ struct AppVersion: Equatable {
 }
 
 let fileManager = FileManager.default
-let projectDir = URL(fileURLWithPath: CommandLine.arguments[0])
+let bundledProjectDir = Bundle.main.object(forInfoDictionaryKey: "KakaoTalkSubProjectDir") as? String
+let fallbackProjectDir = URL(fileURLWithPath: CommandLine.arguments[0])
     .deletingLastPathComponent()
     .deletingLastPathComponent()
     .deletingLastPathComponent()
     .deletingLastPathComponent()
     .path
+let projectDir = ProcessInfo.processInfo.environment["PROJECT_DIR"] ?? bundledProjectDir ?? fallbackProjectDir
 
 let sourceApp = URL(fileURLWithPath: ProcessInfo.processInfo.environment["SRC_APP"] ?? "/Applications/KakaoTalk.app")
 let coreApp = URL(fileURLWithPath: ProcessInfo.processInfo.environment["CORE_APP"] ?? "\(projectDir)/runtime/카카오톡Sub.app")
