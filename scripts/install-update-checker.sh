@@ -4,9 +4,14 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LABEL="com.hoyaaaa.KakaoTalkSub.update-checker"
 PLIST="$HOME/Library/LaunchAgents/$LABEL.plist"
-INTERVAL_SECONDS="${INTERVAL_SECONDS:-21600}"
+INTERVAL_SECONDS="${INTERVAL_SECONDS:-3600}"
+UPDATER_BIN="$PROJECT_DIR/.build/KakaoTalkSubUpdater"
+UPDATER_SRC="$PROJECT_DIR/Sources/KakaoTalkSubUpdater/main.swift"
 
 mkdir -p "$HOME/Library/LaunchAgents"
+mkdir -p "$PROJECT_DIR/.build"
+
+swiftc "$UPDATER_SRC" -o "$UPDATER_BIN"
 
 cat >"$PLIST" <<PLIST
 <?xml version="1.0" encoding="UTF-8"?>
@@ -17,7 +22,8 @@ cat >"$PLIST" <<PLIST
   <string>$LABEL</string>
   <key>ProgramArguments</key>
   <array>
-    <string>$PROJECT_DIR/scripts/check-kakaotalk-sub-update.sh</string>
+    <string>$UPDATER_BIN</string>
+    <string>$PROJECT_DIR</string>
   </array>
   <key>StartInterval</key>
   <integer>$INTERVAL_SECONDS</integer>
