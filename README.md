@@ -1,8 +1,19 @@
 # KakaoTalkWinApp
 
-Goal: build a macOS app that feels like a second KakaoTalk instance, backed by Windows KakaoTalk running inside a hidden, dedicated Windows ARM64 VM.
+Goal: build a macOS app that feels like a second KakaoTalk instance.
 
-This is not a native Windows-app compatibility layer. The practical design is:
+The original Windows ARM64 VM path reached boot, install, and RDP, but the
+official Windows KakaoTalk UI binary crashes under Windows ARM64 x64
+emulation. The current free/local path is native macOS KakaoTalk isolated by a
+separate macOS user account.
+
+The active practical design is:
+
+- primary macOS user keeps the normal KakaoTalk session
+- secondary macOS user, for example `kakao2`, owns a separate KakaoTalk data container and keychain
+- Screen Sharing opens the secondary session as an app-like window
+
+The previous VM design was:
 
 - macOS app shell: `KakaoTalk Windows.app`
 - QEMU Windows 11 ARM64 VM in the background
@@ -87,6 +98,7 @@ For the very first prototype, using external `sdl-freerdp` is acceptable. Once V
 
 ## Docs
 
+- [macOS Multiuser Plan](docs/MACOS_MULTIUSER_PLAN.md)
 - [Product Brief](docs/PRODUCT_BRIEF.md)
 - [Architecture](docs/ARCHITECTURE.md)
 - [macSandbox Analysis](docs/MACSANDBOX_ANALYSIS.md)

@@ -7,6 +7,7 @@ DerivedData/
 
 # Runtime VM state and generated artifacts
 runtime/
+KakaoTalk Isolated Session.app/
 *.qcow2
 *.fd
 *.img
