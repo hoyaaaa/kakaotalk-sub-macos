@@ -3,6 +3,7 @@ set -euo pipefail
 
 SECONDARY_USER="${1:-kakao2}"
 FULL_NAME="${FULL_NAME:-KakaoTalk 2}"
+HIDE_USER="${HIDE_USER:-1}"
 KICKSTART="/System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart"
 SCREENSHARING_PLIST="/System/Library/LaunchDaemons/com.apple.screensharing.plist"
 
@@ -19,6 +20,7 @@ fi
 echo "This creates or prepares a separate macOS user for isolated KakaoTalk."
 echo "User: $SECONDARY_USER"
 echo "Full name: $FULL_NAME"
+echo "Hidden from login-window user list: $HIDE_USER"
 echo
 echo "You will be asked for your macOS admin password by sudo."
 sudo -v
@@ -47,6 +49,16 @@ else
   echo "created user: $SECONDARY_USER"
 fi
 
+if [[ "$HIDE_USER" == "1" ]]; then
+  sudo dscl . create "/Users/$SECONDARY_USER" IsHidden 1
+  echo "marked hidden: $SECONDARY_USER"
+else
+  sudo dscl . delete "/Users/$SECONDARY_USER" IsHidden >/dev/null 2>&1 || true
+  echo "marked visible: $SECONDARY_USER"
+fi
+
+sudo dseditgroup -o edit -d "$SECONDARY_USER" -t user admin >/dev/null 2>&1 || true
+
 if [[ -f "$SCREENSHARING_PLIST" ]]; then
   sudo launchctl enable system/com.apple.screensharing || true
   sudo launchctl bootstrap system "$SCREENSHARING_PLIST" 2>/dev/null || true
@@ -67,3 +79,6 @@ echo "Next:"
 echo "1. Run: scripts/open-macos-kakao-session.sh"
 echo "2. Log in as $SECONDARY_USER in Screen Sharing."
 echo "3. Open /Applications/KakaoTalk.app inside that session and log in."
+echo
+echo "Note: hidden users are still real local users. They are hidden from the"
+echo "login-window user list, not disabled. Screen Sharing needs a real GUI user."
