@@ -5,7 +5,7 @@
 .build/
 DerivedData/
 
-# Runtime VM state and generated artifacts
+# Generated local app/runtime artifacts
 runtime/
 KakaoTalk Isolated Session.app/
 KakaoTalk Max Isolated.app/

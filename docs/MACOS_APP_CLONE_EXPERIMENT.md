@@ -45,5 +45,7 @@ This is the most likely way to make a modified clone launch at all, but it may
 also break KakaoTalk if the app requires its original sandbox, application
 group, receipt, or keychain access group.
 
-If the clone does launch, it is still running as the same macOS user unless
-combined with the multiuser plan.
+Observed after login, the clone used separate local storage under
+`com.hoya.KakaoTalkMaxIsolated` for app support, WebKit, preferences, HTTP
+storage, cache, and logs. It is still running as the same macOS user and should
+not be described as complete device isolation.
